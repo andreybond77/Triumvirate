@@ -4,7 +4,7 @@
 
 Игрок и компьютер выставляют шашки трёх типов (α, ω, δ) на доске 8×8. Каждый цвет бьёт только один другой цвет, что превращает классические шашки в стратегию с чтением намерений противника.
 
-**[🎮 Играть в демо](https://andreybond77.github.io/triumvirate/)** · **[📂 Исходный код](https://github.com/andreybond77/triumvirate)**
+**[🎮 Играть в демо](https://andreybond77.github.io/Triumvirate/)** · **[📂 Исходный код](https://github.com/andreybond77/triumvirate)**
 
 ---
 
