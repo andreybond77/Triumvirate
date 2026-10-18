@@ -1,0 +1,579 @@
+/* ============================================================
+   ИГРОВАЯ СТРАНИЦА — ДИНАМИЧЕСКИЙ РАЗМЕР ВСЕХ ЭЛЕМЕНТОВ
+   БЕЗ ЗАГОЛОВКА, ТАЙМЕР ВСЕГДА ВИДЕН
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    background: #1A1A2E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    touch-action: none;
+}
+
+/* ============================================================
+   ОСНОВНОЙ КОНТЕЙНЕР ИГРЫ
+   ============================================================ */
+
+.game {
+    width: 100%;
+    max-width: 600px;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    max-height: 100vh;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 0;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    touch-action: none;
+    -webkit-touch-callout: none;
+}
+
+/* ============================================================
+   ЦЕНТРАЛЬНЫЙ БЛОК — ОБЪЕДИНЯЕТ ВЕРХ + ПОЛЕ + НИЗ
+   ============================================================ */
+
+.game-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    gap: 0;
+}
+
+/* ============================================================
+   ВЕРХНИЙ БЛОК
+   ============================================================ */
+
+.top-section {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ============================================================
+   ХЕДЕР — БЕЗ ЗАГОЛОВКА
+   ============================================================ */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 4px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+    gap: 4px;
+    width: 100%;
+    overflow: hidden;
+    /* min-height задаётся через JS динамически */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 0 0 auto;
+    min-width: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 0 0 auto;
+    min-width: 0;
+}
+
+/* ============================================================
+   КНОПКИ ХЕДЕРА — ДИНАМИЧЕСКИЙ РАЗМЕР (через JS)
+   ============================================================ */
+
+.icon-btn {
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    padding: 0;
+    background: rgba(255,255,255,0.04);
+    position: relative;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    pointer-events: auto;
+    /* Размер задаётся через JS динамически */
+}
+
+.icon-btn:active {
+    transform: scale(0.9);
+    background: rgba(255,255,255,0.12);
+}
+
+.icon-btn:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: #4A90D9;
+    color: #FFFFFF;
+}
+
+.undo-btn-header:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.sound-btn.muted {
+    opacity: 0.4;
+}
+
+.exit-btn {
+    background: var(--primary) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    color: #FFFFFF !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    flex-shrink: 0;
+    position: relative;
+    touch-action: manipulation;
+    pointer-events: auto;
+    /* Размер задаётся через JS динамически */
+}
+
+.exit-btn:hover {
+    background: var(--primary-dark) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 2px 12px rgba(74, 144, 217, 0.3) !important;
+}
+
+.exit-btn:active {
+    transform: scale(0.9) !important;
+}
+
+/* ============================================================
+   ТАЙМЕР — ДИНАМИЧЕСКИЙ РАЗМЕР (через JS)
+   Таймер виден на ВСЕХ экранах (в сложном режиме)
+   ============================================================ */
+
+.timer-display {
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    padding: 0 4px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+    flex-shrink: 0;
+    pointer-events: none;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    /* Размер задаётся через JS динамически */
+}
+
+.timer-display.warning {
+    color: #f44336;
+    border-color: #f44336;
+}
+
+/* ============================================================
+   ИНФОРМАЦИОННАЯ СТРОКА — ПРИЖАТА К ПОЛЮ СНИЗУ
+   ============================================================ */
+
+.info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.02);
+    padding: 2px 6px;
+    border-radius: var(--btn-radius);
+    margin: 0 0 2px 0;
+    gap: 4px;
+    border: 1px solid rgba(255,255,255,0.04);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    /* min-height задаётся через JS динамически */
+}
+
+.info-computer,
+.info-player {
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    pointer-events: none;
+    /* font-size задаётся через JS динамически */
+}
+
+.info-computer span,
+.info-player span {
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.info-difficulty {
+    background: #4A90D9;
+    padding: 0 6px;
+    border-radius: calc(var(--btn-radius) + 2px);
+    font-weight: 500;
+    color: #FFFFFF;
+    letter-spacing: 0.3px;
+    pointer-events: none;
+    white-space: nowrap;
+    /* Размер задаётся через JS динамически */
+}
+
+/* ============================================================
+   ИГРОВОЕ ПОЛЕ — ЦЕНТР, НЕ РАСТЯГИВАЕТСЯ
+   ============================================================ */
+
+.board-wrap {
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: var(--btn-radius);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0 !important;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 5;
+    touch-action: none;
+    pointer-events: auto;
+    /* Размер задаётся через JS динамически */
+}
+
+#boardCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    background: #1A1A2E;
+    cursor: pointer;
+    touch-action: none;
+    aspect-ratio: 1 / 1;
+    pointer-events: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* ============================================================
+   НИЖНИЙ БЛОК — ПРИЖАТ К ПОЛЮ СВЕРХУ
+   ============================================================ */
+
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ============================================================
+   ИНФОРМАЦИЯ ИГРЫ — ПРИЖАТА К ПОЛЮ СВЕРХУ
+   ============================================================ */
+
+.game-info {
+    background: rgba(255,255,255,0.02);
+    border-radius: var(--btn-radius);
+    margin: 2px 0 0 0;
+    padding: 2px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border: 1px solid rgba(255,255,255,0.04);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    /* min-height задаётся через JS динамически */
+}
+
+.game-info-msg {
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.3;
+    font-weight: 400;
+    pointer-events: none;
+    padding: 0 4px;
+    /* font-size и min-height задаются через JS динамически */
+}
+
+.game-info-msg.success {
+    color: #4CAF50;
+}
+
+.game-info-msg.error {
+    color: #f44336;
+}
+
+.game-info-msg.info {
+    color: #4A90D9;
+}
+
+.game-info-msg.warning {
+    color: #ff9800;
+}
+
+/* ============================================================
+   ПАНЕЛЬ РАССТАНОВКИ — ПРИЖАТА К ПОЛЮ СВЕРХУ
+   ============================================================ */
+
+.placement-panel {
+    display: none;
+    width: 100%;
+    padding: 0;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 5;
+    /* margin-top задаётся через JS динамически */
+}
+
+.color-selector {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* gap и margin задаются через JS динамически */
+}
+
+/* ============================================================
+   ШАШКИ-ПОДСКАЗКИ — ДИНАМИЧЕСКИЙ РАЗМЕР (через JS)
+   ============================================================ */
+
+.color-btn,
+.medium-piece {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold !important;
+    border: 2px solid rgba(255,255,255,0.08);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    touch-action: manipulation;
+    position: relative;
+    z-index: 5;
+    pointer-events: auto;
+    flex-shrink: 0;
+    background: transparent;
+    /* Размер задаётся через JS динамически */
+}
+
+.color-btn:active {
+    transform: scale(0.9);
+}
+
+.color-btn:hover {
+    border-color: rgba(255,255,255,0.4);
+    transform: scale(1.05);
+}
+
+.color-btn.active {
+    border-color: #4A90D9;
+    box-shadow: 0 0 16px rgba(74, 144, 217, 0.25);
+}
+
+.medium-piece {
+    background: rgba(255,255,255,0.05);
+    margin-bottom: 2px;
+}
+
+.medium-place {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: 2px 0;
+}
+
+.medium-text {
+    display: none !important;
+}
+
+/* ============================================================
+   ЗАГРУЗОЧНЫЙ ЭКРАН
+   ============================================================ */
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1A1A2E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(12px, 2vh, 24px);
+}
+
+.loading-spinner {
+    width: clamp(28px, 4vh, 48px);
+    height: clamp(28px, 4vh, 48px);
+    border: clamp(2px, 0.3vh, 4px) solid rgba(255,255,255,0.08);
+    border-top-color: #4A90D9;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-title {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 16px);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.loading-text {
+    font-size: clamp(16px, 3vh, 32px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+}
+
+.loading-emoji {
+    font-size: clamp(16px, 3vh, 32px);
+    opacity: 0.5;
+}
+
+.loading-status {
+    color: rgba(255,255,255,0.4);
+    font-size: clamp(10px, 1.5vh, 16px);
+    font-weight: 300;
+    margin: 0;
+}
+
+.loading-progress {
+    width: clamp(100px, 20vw, 200px);
+    height: clamp(2px, 0.3vh, 4px);
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #4A90D9;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+    animation: loadingProgress 1.5s ease-out forwards;
+}
+
+@keyframes loadingProgress {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+/* ============================================================
+   МЕДИА-ЗАПРОСЫ — БЕЗ СКРЫТИЯ ТАЙМЕРА
+   ============================================================ */
+
+@media (max-width: 480px) {
+    .game { padding: 2px; }
+    .header { padding: 1px 3px; gap: 3px; }
+    .info-bar { padding: 1px 4px; margin: 0 0 1px 0; gap: 3px; border-radius: calc(var(--btn-radius) - 2px); }
+    .game-info { padding: 1px 4px; margin-top: 1px; gap: 1px; border-radius: calc(var(--btn-radius) - 2px); }
+    .game-info-msg { padding: 0 2px; }
+    .placement-panel { margin-top: 1px; }
+    .board-wrap { border-radius: calc(var(--btn-radius) - 2px); }
+    /* Таймер НЕ скрывается — размер задаётся через JS */
+}
+
+@media (max-width: 380px) {
+    .game { padding: 1px; }
+    .header { padding: 0 2px; gap: 2px; }
+    .info-bar { padding: 0 3px; border-radius: calc(var(--btn-radius) - 4px); gap: 2px; margin-bottom: 1px; }
+    .game-info { padding: 0 3px; margin-top: 1px; gap: 1px; border-radius: calc(var(--btn-radius) - 4px); }
+    .game-info-msg { padding: 0 2px; }
+    .board-wrap { border-radius: calc(var(--btn-radius) - 4px); }
+    /* Таймер НЕ скрывается — размер задаётся через JS */
+}
+
+@media (min-width: 768px) {
+    .game { max-width: 600px; padding: 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); max-height: 95vh; height: auto; }
+    .header { padding: 4px 8px; gap: 6px; }
+    .info-bar { padding: 4px 8px; margin-bottom: 4px; }
+    .game-info { padding: 4px 8px; margin-top: 4px; gap: 4px; }
+    .board-wrap { border-radius: var(--btn-radius); }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .game { max-width: 90vw; padding: 2px; border-radius: 4px; height: 98vh; max-height: 98vh; }
+    .header { padding: 0 3px; gap: 3px; }
+    .info-bar { padding: 0 4px; margin: 0 0 1px 0; border-radius: calc(var(--btn-radius) - 4px); gap: 2px; }
+    .game-info { padding: 0 4px; margin: 1px 0 0 0; border-radius: calc(var(--btn-radius) - 4px); gap: 1px; }
+    .game-info-msg { padding: 0 2px; }
+    .placement-panel { margin-top: 1px; }
+    .board-wrap { border-radius: calc(var(--btn-radius) - 4px); }
+    /* Таймер НЕ скрывается — размер задаётся через JS */
+}

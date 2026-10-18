@@ -1,0 +1,278 @@
+/* ============================================================
+   ФАСАДНАЯ СТРАНИЦА — КАРТИНКА + КНОПКА В ЦЕНТРЕ
+   ============================================================ */
+
+.index-page {
+    background: var(--bg-dark);
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+}
+
+/* ============================================================
+   ВНЕШНИЙ FLEX-КОНТЕЙНЕР — ЦЕНТРИРУЕТ ВНУТРЕННИЙ БЛОК
+   ============================================================ */
+
+.index-flex-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+    padding: 0;
+}
+
+/* Затемняющий слой */
+.index-flex-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ============================================================
+   ВНУТРЕННИЙ БЛОК — РАЗМЕР ПО СОДЕРЖИМОМУ
+   Картинка + кнопка = единый компактный блок
+   ============================================================ */
+
+.index-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+    
+    /* РАЗМЕР ПО СОДЕРЖИМОМУ */
+    width: auto;
+    height: auto;
+    max-width: 95vw;
+    max-height: 95vh;
+    
+    padding: 0;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   ФОНОВАЯ КАРТИНКА — РАЗМЕР ПО СОДЕРЖИМОМУ
+   ============================================================ */
+
+.index-bg-img {
+    display: block;
+    flex: 0 1 auto;
+    
+    /* ОГРАНИЧЕНИЯ ПО РАЗМЕРУ */
+    max-width: 90vw;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    
+    object-fit: contain;
+    object-position: center center;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    opacity: 0.9;
+}
+
+/* ============================================================
+   КНОПКА "МЕНЮ" — ПОД КАРТИНКОЙ
+   ============================================================ */
+
+.index-btn {
+    flex: 0 0 auto;
+    background: var(--primary);
+    border: none;
+    border-radius: var(--btn-radius);
+    padding: var(--btn-padding) var(--spacing-xl);
+    font-size: var(--font-btn);
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition);
+    letter-spacing: 2px;
+    box-shadow: 0 4px 30px rgba(74, 144, 217, 0.3);
+    height: var(--btn-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+    
+    width: 90%;
+    max-width: 360px;
+    margin: 0;
+}
+
+.index-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(74, 144, 217, 0.4);
+}
+
+.index-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* ============================================================
+   ЗАГРУЗОЧНЫЙ ЭКРАН
+   ============================================================ */
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.loading-spinner {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    border: 3px solid var(--border-color);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.loading-text {
+    font-size: var(--font-title);
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: var(--text-primary);
+}
+
+.loading-emoji {
+    font-size: var(--font-title);
+    opacity: 0.5;
+}
+
+.loading-status {
+    color: var(--text-secondary);
+    font-size: var(--font-text);
+    font-weight: 300;
+    margin: 0;
+}
+
+.loading-progress {
+    width: 180px;
+    height: 3px;
+    background: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+    animation: loadingProgress 1.5s ease-out forwards;
+}
+
+@keyframes loadingProgress {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+/* ============================================================
+   МЕДИА-ЗАПРОСЫ
+   ============================================================ */
+
+@media (max-width: 480px) {
+    .index-content {
+        gap: 1.5vh;
+        max-width: 90vw;
+        max-height: 90vh;
+    }
+    
+    .index-bg-img {
+        max-width: 85vw;
+        max-height: 65vh;
+    }
+    
+    .index-btn {
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 380px) {
+    .index-content {
+        gap: 1vh;
+        max-width: 92vw;
+        max-height: 92vh;
+    }
+    
+    .index-bg-img {
+        max-width: 88vw;
+        max-height: 62vh;
+    }
+    
+    .index-btn {
+        max-width: 280px;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .index-content {
+        gap: 1.5vh;
+        flex-direction: row;
+        max-width: 90vw;
+        max-height: 90vh;
+    }
+    
+    .index-bg-img {
+        max-width: 55vw;
+        max-height: 80vh;
+    }
+    
+    .index-btn {
+        max-width: 30vw;
+        width: auto;
+    }
+}

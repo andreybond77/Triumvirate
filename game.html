@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Триумвират | Поле боя</title>
+    <meta name="description" content="Играйте в Триумвират. Пошаговая стратегия с тремя символами и искусственным интеллектом.">
+    
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- ===== YANDEX GAMES SDK ===== -->
+    <script src="/sdk.js"></script>
+    
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <div class="game">
+        <div class="game-center">
+            <!-- ВЕРХНЯЯ СЕКЦИЯ -->
+            <div class="top-section">
+                <!-- Хедер -->
+                <div class="header">
+                    <div class="header-left">
+                        <button class="icon-btn undo-btn-header" id="undoBtn" aria-label="Отменить ход">↩️</button>
+                        <div class="timer-display" id="timerDisplay"></div>
+                    </div>
+                    <div class="header-right">
+                        <button class="icon-btn sound-btn" id="soundBtn" aria-label="Включить/выключить звук">🔊</button>
+                        <button class="icon-btn exit-btn" id="exitBtn" aria-label="Выйти в меню">✕</button>
+                    </div>
+                </div>
+
+                <!-- Информационная строка -->
+                <div class="info-bar">
+                    <span class="info-computer">💻 <span id="computerScoreDisplay">0</span></span>
+                    <span class="info-difficulty" id="difficultyBadge">⏳ Загрузка...</span>
+                    <span class="info-player">🧑 <span id="playerScoreDisplay">0</span></span>
+                </div>
+            </div>
+
+            <!-- ИГРОВОЕ ПОЛЕ -->
+            <div class="board-wrap">
+                <canvas id="boardCanvas"></canvas>
+            </div>
+
+            <!-- НИЖНЯЯ СЕКЦИЯ -->
+            <div class="bottom-section">
+                <div class="placement-panel" id="placementPanel">
+                    <div class="color-selector" id="colorSelector"></div>
+                    <div class="medium-place" id="mediumPlace" style="display:none;">
+                        <div class="medium-piece" id="mediumPiece"></div>
+                    </div>
+                </div>
+
+                <div class="game-info" id="gameInfo">
+                    <div class="game-info-msg" id="gameMessage">🧩 Ваш ход. Выберите шашку</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/game.js"></script>
+    <script src="moderation-fixes.js"></script>
+</body>
+</html>

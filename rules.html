@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Триумвират | Правила</title>
+    <meta name="description" content="Правила игры Триумвират.">
+    
+    <script src="/sdk.js"></script>
+    
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/rules.css">
+</head>
+<body class="rules-page">
+    <div class="rules-container">
+        <!-- Кнопка назад -->
+        <div class="rules-header">
+            <button class="rules-btn-back" id="backBtn">✕</button>
+        </div>
+        
+        <h1 class="rules-title">
+            <span class="rules-title-emoji">📜</span>
+            <span class="rules-title-gradient">Правила</span>
+        </h1>
+
+        <ul class="rules-list">
+            <li>🧩 Пошаговая игра человек против компьютера с системой трёх символов «хищник-жертва»</li>
+            <li>👆 Клик по шашке → выбор, клик по клетке → ход</li>
+            <li>⬆️⬇️⬅️➡️ ход по прямой на 1 клетку</li>
+            <li>↗️↖️↙️↘️ атака по диагонали на 1 клетку</li>
+            <li>⚔️ <span style="color:#e53935;font-weight:bold;">α</span> бьет <span style="color:#43a047;font-weight:bold;">δ</span>  | <span style="color:#43a047;font-weight:bold;">δ</span> бьет <span style="color:#1e88e5;font-weight:bold;">ω</span> | <span style="color:#1e88e5;font-weight:bold;">ω</span> бьет <span style="color:#e53935;font-weight:bold;">α</span></li>
+            <li>🔄 Одинаковые символы могут меняться местами</li>
+            <li>🏅 ➕1 очко за съеденную шашку</li>
+            <li>↩️ Отмена хода — 3 раза</li>
+           
+        </ul>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/rules.js"></script>
+</body>
+</html>

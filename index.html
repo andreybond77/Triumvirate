@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Триумвират | Добро пожаловать</title>
+    <meta name="description" content="Логическая головоломка с тремя цветами шашек">
+    
+    <link rel="icon" type="image/png" sizes="512x512" href="imag/icon-512.png">
+    <link rel="apple-touch-icon" href="imag/icon-512.png">
+    
+    <meta property="og:title" content="Триумвират">
+    <meta property="og:description" content="Логическая головоломка, с тремя цветами шашек сражаются с противником (ИИ) по принципу «хищник-жертва».">
+    <meta property="og:image" content="imag/icon-512.png">
+    <meta property="og:type" content="game">
+    <meta property="og:site_name" content="Триумвират">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Триумвират">
+    <meta name="twitter:description" content="Логическая пошаговая стратегия с тремя армиями">
+    <meta name="description" content="Триумвират — логическая головоломка. Сражайтесь с компьютером в уникальной игре с тремя цветами шашек.">
+    <meta name="keywords" content="шашки, логическая игра, триколор, настольная игра">
+    
+    <!-- ===== YANDEX GAMES SDK ===== -->
+    <script src="/sdk.js"></script>
+    
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body class="index-page">
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-title">
+                <span class="loading-text">Триумвират</span>
+            </div>
+            <p class="loading-status">Загрузка игры...</p>
+            <div class="loading-progress">
+                <div class="loading-progress-bar" id="loadingProgressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЕДИНЫЙ FLEX-КОНТЕЙНЕР -->
+    <div class="index-flex-container">
+        <!-- ВНУТРЕННИЙ БЛОК: картинка + кнопка -->
+        <div class="index-content">
+            <img src="imag/background.png" alt="" class="index-bg-img" aria-hidden="true">
+            <button class="index-btn" id="facadeMenuBtn">🎮 Меню</button>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
+    <script src="moderation-fixes.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Триумвират | Статистика</title>
+    <meta name="description" content="Статистика побед в игре Триумвират.">
+    
+    <script src="/sdk.js"></script>
+    
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/stats.css">
+</head>
+<body class="stats-page">
+    <div class="stats-container">
+        <!-- Хедер: кнопка сброса слева, заголовок по центру, кнопка назад справа -->
+        <div class="stats-header">
+            <button class="stats-btn-reset" id="resetStatsBtn" aria-label="Сбросить статистику">🗑</button>
+            <h1 class="stats-title">
+                <span class="stats-title-emoji">📊</span>
+                <span class="stats-title-gradient">Статистика</span>
+            </h1>
+            <button class="stats-btn-back" id="backBtn" aria-label="На главную">✕</button>
+        </div>
+
+        <!-- Карточки с общей статистикой -->
+        <div class="stats-grid">
+            <div class="stats-card">
+                <div class="stats-card-label">Игрок</div>
+                <div class="stats-card-value" id="playerWins">0</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-card-label">Компьютер</div>
+                <div class="stats-card-value" id="computerWins">0</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-card-label">Всего </div>
+                <div class="stats-card-value" id="totalGames">0</div>
+            </div>
+        </div>
+
+        <!-- Таблица по сложностям -->
+        <div class="stats-table-wrap">
+            <div class="stats-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Сложность</th>
+                            <th>Игрок</th>
+                            <th>Компьютер</th>
+                            <th>Игр</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="diff-label">🟢 Лёгкая</td>
+                            <td class="stat-num" id="easyPlayer">0</td>
+                            <td class="stat-num" id="easyComputer">0</td>
+                            <td class="stat-num" id="easyTotal">0</td>
+                        </tr>
+                        <tr>
+                            <td class="diff-label">🟡 Средняя</td>
+                            <td class="stat-num" id="mediumPlayer">0</td>
+                            <td class="stat-num" id="mediumComputer">0</td>
+                            <td class="stat-num" id="mediumTotal">0</td>
+                        </tr>
+                        <tr>
+                            <td class="diff-label">🔴 Сложная</td>
+                            <td class="stat-num" id="hardPlayer">0</td>
+                            <td class="stat-num" id="hardComputer">0</td>
+                            <td class="stat-num" id="hardTotal">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="stats-footer">
+            <p>© 2026 Триумвират</p>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/stats.js"></script>
+</body>
+</html>

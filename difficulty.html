@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Триумвират | Сложность</title>
+    <meta name="description" content="Выберите уровень сложности в игре Триумвират: лёгкий, средний или сложный.">
+    
+    <script src="/sdk.js"></script>
+    
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/difficulty.css">
+</head>
+<body class="difficulty-page">
+    <div class="difficulty-container">
+        <!-- Кнопка назад -->
+        <div class="difficulty-back-wrapper">
+            <button class="difficulty-btn-back" id="backBtn">✕</button>
+        </div>
+        
+        <h1 class="difficulty-title">
+            <span class="difficulty-title-emoji">🎯</span>
+            <span class="difficulty-title-gradient">Сложность</span>
+        </h1>
+        
+        <div class="difficulty-buttons">
+            <button class="difficulty-btn difficulty-btn-easy" data-diff="easy">
+                <div class="difficulty-btn-title">🟢 Лёгкая</div>
+            </button>
+            <button class="difficulty-btn difficulty-btn-medium" data-diff="medium">
+                <div class="difficulty-btn-title">🟡 Средняя</div>
+            </button>
+            <button class="difficulty-btn difficulty-btn-hard" data-diff="hard">
+                <div class="difficulty-btn-title">🔴 Сложная</div>
+            </button>
+        </div>
+
+        <!-- Обёртка для описания — текст прижат к верху -->
+        <div class="difficulty-description-wrapper">
+            <div class="difficulty-description" id="difficultyDescription">
+                <p>Выберите уровень сложности</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/difficulty.js"></script>
+</body>
+</html>

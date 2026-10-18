@@ -1,0 +1,334 @@
+/* ============================================================
+   СТАТИСТИКА — УВЕЛИЧЕННЫЙ ШРИФТ ДЛЯ МОБИЛЬНЫХ
+   ============================================================ */
+
+.stats-page {
+    background: var(--bg-dark);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.stats-container {
+    max-width: 500px;
+    width: 100%;
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 24px 20px 28px 20px;
+    border: 1px solid var(--border-color);
+}
+
+/* ===== ХЕДЕР ===== */
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.stats-title {
+    font-size: clamp(30px, 5vw, 40px);
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin: 0;
+    color: #FFFFFF;
+    text-shadow: 0 0 60px rgba(255, 255, 255, 0.15);
+    filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0.3));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+}
+
+.stats-title-emoji {
+    font-size: clamp(28px, 4vw, 36px);
+    color: var(--text-primary);
+    -webkit-text-fill-color: var(--text-primary);
+}
+
+.stats-title-gradient {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: #FFFFFF;
+    background-clip: unset;
+}
+
+.stats-btn-back {
+    background: var(--primary) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: var(--icon-size-sm) !important;
+    height: var(--icon-size-sm) !important;
+    font-size: clamp(18px, 2.8vw, 24px) !important;
+    color: var(--text-primary) !important;
+    cursor: pointer !important;
+    transition: all var(--transition) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    min-width: unset !important;
+    flex-shrink: 0;
+}
+
+.stats-btn-back:hover {
+    background: var(--primary-dark) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 20px rgba(74, 144, 217, 0.25) !important;
+}
+
+.stats-btn-reset {
+    background: transparent !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 50% !important;
+    font-size: clamp(18px, 2.8vw, 24px) !important;
+    cursor: pointer !important;
+    transition: all var(--transition) !important;
+    padding: 0 !important;
+    width: var(--icon-size-sm) !important;
+    height: var(--icon-size-sm) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--text-secondary) !important;
+    flex-shrink: 0;
+}
+
+.stats-btn-reset:hover {
+    border-color: var(--primary) !important;
+    color: var(--text-primary) !important;
+    transform: scale(1.05) !important;
+}
+
+/* ===== КАРТОЧКИ СТАТИСТИКИ ===== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.stats-card {
+    background: rgba(255,255,255,0.03);
+    padding: 18px 10px;
+    border-radius: var(--radius);
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.stats-card-label {
+    color: var(--text-secondary);
+    font-size: clamp(16px, 2.2vw, 20px);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.stats-card-value {
+    font-size: clamp(34px, 5.5vw, 46px);
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-top: 6px;
+}
+
+/* ===== ТАБЛИЦА ===== */
+.stats-table-wrap {
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+}
+
+.stats-table {
+    background: rgba(255,255,255,0.03);
+    overflow-x: auto;
+}
+
+.stats-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stats-table th {
+    background: rgba(0,0,0,0.2);
+    color: var(--text-secondary);
+    padding: 14px 10px;
+    text-align: center;
+    font-size: clamp(16px, 2.2vw, 20px);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.stats-table td {
+    padding: 14px 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: clamp(18px, 2.5vw, 24px);
+}
+
+.stats-table tr:last-child td {
+    border-bottom: none;
+}
+
+.stats-table .diff-label {
+    font-size: clamp(17px, 2.4vw, 22px);
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    padding-left: 14px;
+    text-align: left;
+}
+
+.stats-table .stat-num {
+    font-size: clamp(20px, 2.8vw, 26px);
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.stats-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-secondary);
+    font-size: clamp(16px, 2.2vw, 20px);
+    letter-spacing: 0.5px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* ===== МОБИЛЬНЫЕ ===== */
+@media (max-width: 600px) {
+    .stats-container {
+        padding: 18px 16px 20px 16px;
+        border-radius: 14px;
+    }
+
+    .stats-title {
+        font-size: clamp(26px, 4.5vw, 34px);
+        letter-spacing: 2px;
+    }
+
+    .stats-title-emoji {
+        font-size: clamp(24px, 3.5vw, 30px);
+    }
+
+    .stats-grid {
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .stats-card {
+        padding: 14px 8px;
+    }
+
+    .stats-card-value {
+        font-size: clamp(30px, 5vw, 40px);
+    }
+
+    .stats-card-label {
+        font-size: clamp(14px, 2vw, 18px);
+    }
+
+    .stats-btn-back,
+    .stats-btn-reset {
+        width: var(--icon-size-sm) !important;
+        height: var(--icon-size-sm) !important;
+        font-size: clamp(18px, 2.8vw, 24px) !important;
+    }
+
+    .stats-table th {
+        font-size: clamp(14px, 2vw, 18px);
+        padding: 10px 8px;
+    }
+
+    .stats-table td {
+        font-size: clamp(16px, 2.4vw, 20px);
+        padding: 10px 8px;
+    }
+
+    .stats-table .diff-label {
+        font-size: clamp(15px, 2.2vw, 19px);
+        padding-left: 10px;
+    }
+
+    .stats-table .stat-num {
+        font-size: clamp(18px, 2.6vw, 22px);
+    }
+
+    .stats-footer {
+        font-size: clamp(14px, 2vw, 18px);
+        margin-top: 16px;
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .stats-container {
+        padding: 14px 12px 16px 12px;
+        border-radius: 12px;
+    }
+
+    .stats-title {
+        font-size: clamp(22px, 4vw, 28px);
+        letter-spacing: 1px;
+    }
+
+    .stats-title-emoji {
+        font-size: clamp(20px, 3vw, 24px);
+    }
+
+    .stats-grid {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .stats-card {
+        padding: 12px 6px;
+    }
+
+    .stats-card-value {
+        font-size: clamp(26px, 4.5vw, 34px);
+    }
+
+    .stats-card-label {
+        font-size: clamp(12px, 1.8vw, 16px);
+    }
+
+    .stats-btn-back,
+    .stats-btn-reset {
+        width: calc(var(--icon-size-sm) - 4px) !important;
+        height: calc(var(--icon-size-sm) - 4px) !important;
+        font-size: clamp(16px, 2.5vw, 20px) !important;
+    }
+
+    .stats-table th {
+        font-size: clamp(12px, 1.8vw, 16px);
+        padding: 8px 6px;
+    }
+
+    .stats-table td {
+        font-size: clamp(14px, 2vw, 18px);
+        padding: 8px 6px;
+    }
+
+    .stats-table .diff-label {
+        font-size: clamp(13px, 2vw, 17px);
+        padding-left: 8px;
+    }
+
+    .stats-table .stat-num {
+        font-size: clamp(16px, 2.4vw, 20px);
+    }
+
+    .stats-footer {
+        font-size: clamp(12px, 1.8vw, 16px);
+        margin-top: 12px;
+        padding-top: 8px;
+    }
+}
